@@ -1,0 +1,39 @@
+.filters {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.filterButton {
+  padding: 10px 20px;
+  background-color: white;
+  color: #231828;
+  /* Darker border matching homeowners theme */
+  border: 1.5px solid #ead0d0;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  /* Added shadow for depth matching homeowners */
+  box-shadow: 0 2px 8px rgba(35, 24, 40, 0.06);
+}
+
+.filterButton:hover {
+  /* Pinkish hover background matching homeowners */
+  background: #f5dfe0;
+  color: #231828;
+}
+
+.filterActive {
+  /* Dark plum from homeowners theme */
+  background-color: #231828;
+  color: white;
+  border-color: #231828;
+  box-shadow: 0 4px 8px rgba(35, 24, 40, 0.15);
+}
+
+.filterActive:hover {
+  background-color: #231828;
+}

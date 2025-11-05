@@ -1,0 +1,195 @@
+/* ================================
+   Custom Alert Modal (Fluid Responsive)
+   ================================ */
+
+.alertOverlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  animation: fadeIn 0.25s ease-out;
+  padding: clamp(0.75rem, 2vw, 1.5rem);
+}
+
+.alertDialog {
+  background: #fff;
+  border-radius: 1rem;
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+  max-width: min(90vw, 25rem);
+  width: 100%;
+  box-shadow: 0 1.25rem 1.5rem -0.3125rem rgba(0, 0, 0, 0.1),
+    0 0.625rem 0.625rem -0.3125rem rgba(0, 0, 0, 0.04);
+  animation: slideUp 0.3s ease-out;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: clamp(1rem, 2vw, 1.5rem);
+}
+
+/* ===== ICON ===== */
+.alertIcon {
+  font-size: clamp(2.5rem, 4vw + 1rem, 3.5rem);
+  line-height: 1;
+}
+
+/* ===== CONTENT ===== */
+.alertContent {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.25rem, 1vw, 0.75rem);
+  width: 100%;
+}
+
+.alertTitle {
+  font-size: clamp(1.125rem, 2vw + 0.5rem, 1.5rem);
+  font-weight: 600;
+  color: #231818;
+  margin: 0;
+}
+
+.alertMessage {
+  font-size: clamp(0.875rem, 1.5vw + 0.25rem, 1rem);
+  color: #5c5555;
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* ===== ACTIONS ===== */
+.alertActions {
+  display: flex;
+  gap: clamp(0.5rem, 1.5vw, 0.75rem);
+  width: 100%;
+  margin-top: clamp(0.5rem, 1.5vw, 1rem);
+}
+
+.alertCancelBtn,
+.alertConfirmBtn {
+  flex: 1;
+  padding: clamp(0.625rem, 1.5vw, 0.875rem) clamp(1rem, 3vw, 1.5rem);
+  border-radius: 0.5rem;
+  font-size: clamp(0.875rem, 1vw + 0.25rem, 1rem);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+/* ===== DEFAULT BUTTON STYLES ===== */
+.alertCancelBtn {
+  background: #f3e5e5;
+  color: #5c5555;
+}
+
+.alertCancelBtn:hover {
+  background: #e8d4d4;
+}
+
+.alertConfirmBtn {
+  background: #3b82f6;
+  color: white;
+}
+
+.alertConfirmBtn:hover {
+  background: #2563eb;
+}
+
+/* ===== TYPE-SPECIFIC BUTTON COLORS ===== */
+.alertsuccessBtn {
+  background: #059669;
+}
+.alertsuccessBtn:hover {
+  background: #047857;
+}
+
+.alerterrorBtn {
+  background: #dc2626;
+}
+.alerterrorBtn:hover {
+  background: #b91c1c;
+}
+
+.alertwarningBtn {
+  background: #f59e0b;
+}
+.alertwarningBtn:hover {
+  background: #d97706;
+}
+
+.alertinfoBtn {
+  background: #3b82f6;
+}
+.alertinfoBtn:hover {
+  background: #2563eb;
+}
+
+.alertconfirmBtn {
+  background: #f59e0b;
+}
+.alertconfirmBtn:hover {
+  background: #d97706;
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(1.25rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== RESPONSIVE BREAKPOINTS ===== */
+
+/* Phones */
+@media (max-width: 480px) {
+  .alertDialog {
+    padding: clamp(1rem, 3vw, 1.25rem);
+  }
+
+  .alertIcon {
+    font-size: clamp(2.25rem, 5vw, 2.75rem);
+  }
+
+  .alertActions {
+    flex-direction: column-reverse;
+  }
+
+  .alertCancelBtn,
+  .alertConfirmBtn {
+    width: 100%;
+  }
+}
+
+/* Tablets */
+@media (min-width: 481px) and (max-width: 768px) {
+  .alertDialog {
+    max-width: 80%;
+  }
+}
+
+/* Laptops & Desktops */
+@media (min-width: 769px) {
+  .alertDialog {
+    max-width: 25rem;
+  }
+}

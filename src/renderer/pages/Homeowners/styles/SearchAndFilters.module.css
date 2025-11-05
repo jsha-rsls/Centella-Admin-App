@@ -1,0 +1,233 @@
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+/* LEFT SECTION – search + filter inline */
+.leftSection {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* Search */
+.searchContainer {
+  position: relative;
+  flex: 0 0 300px;
+  box-sizing: border-box;
+}
+
+.searchIcon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #8c8585;
+  font-size: 18px;
+  pointer-events: none;
+}
+
+.searchInput {
+  width: 100%;
+  padding: 10px 12px 10px 40px;
+  /* Darker border for better visibility */
+  border: 2px solid #ead0d0;
+  border-radius: 8px;
+  font-size: 14px;
+  background: white;
+  color: #231828;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+}
+
+.searchInput:focus {
+  outline: none;
+  border-color: #231828;
+  box-shadow: 0 0 0 3px rgba(35, 24, 40, 0.1);
+}
+
+.searchInput::placeholder {
+  color: #8c8585;
+}
+
+/* Filter Section (inline with search and dropdowns) */
+.filterSection {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* Filter Button */
+.filterBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 18px;
+  /* Darker border for better visibility */
+  border: 2px solid #ead0d0;
+  border-radius: 8px;
+  background: white;
+  color: #8c8585;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+  height: 42px;
+  box-sizing: border-box;
+}
+
+.filterBtn:hover {
+  /* Slightly darker hover background */
+  background: #f5dfe0;
+  color: #231828;
+}
+
+.filterBtn.active {
+  background: #231828;
+  color: white;
+  border-color: #231828;
+}
+
+/* Filter Controls (no box, inline layout) */
+.filterControls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  flex-wrap: wrap;
+}
+
+/* Filter group (label + select) */
+.filterGroup {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+}
+
+.filterGroup label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #231828;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+/* Dropdown select */
+.filterSelect {
+  padding: 8px 12px;
+  /* Darker border for better visibility */
+  border: 1.5px solid #ead0d0;
+  border-radius: 8px;
+  background: white;
+  color: #231828;
+  font-size: 13px;
+  font-weight: 600;
+  min-width: 120px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.filterSelect:hover {
+  background: #f9f9f9;
+  border-color: #d9b8b8;
+}
+
+.filterSelect:focus {
+  outline: none;
+  border-color: #231828;
+  box-shadow: 0 0 0 3px rgba(35, 24, 40, 0.1);
+  background: white;
+}
+
+/* View Toggle */
+.viewToggle {
+  display: flex;
+  background: white;
+  /* Darker border for better visibility */
+  border: 1.5px solid #ead0d0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.viewBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 16px;
+  background: transparent;
+  border: none;
+  font-size: 18px;
+  color: #8c8585;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.viewBtn:hover {
+  /* Slightly darker hover background */
+  background: #f5dfe0;
+  color: #231828;
+}
+
+.viewBtn.active {
+  background: #231828;
+  color: white;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .controls {
+    flex-wrap: wrap;
+  }
+
+  .leftSection {
+    flex: 1;
+    min-width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .leftSection {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .searchContainer {
+    width: 100%;
+  }
+
+  .filterSection {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .filterControls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .filterGroup {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .filterSelect {
+    width: 100%;
+  }
+}

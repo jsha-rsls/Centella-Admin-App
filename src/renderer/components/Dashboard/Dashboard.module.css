@@ -1,0 +1,40 @@
+.dashboard {
+  display: flex;
+  min-height: 100vh;
+  background: #f8fafc;
+}
+
+.main {
+  flex: 1;
+  margin-left: 290px;
+  padding: 32px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow-y: auto; /* <-- allow vertical scrolling */
+  width: calc(100% - 260px);
+  box-sizing: border-box;
+  height: 100vh; /* ensures scrollable viewport area */
+}
+
+.mainExpanded {
+  margin-left: 72px; /* Changed from 80px to match sidebar collapsed width */
+  width: calc(100% - 72px);
+}
+
+/* Remove the max-width constraint from Overview globally when inside Dashboard */
+.main :global(.overview) {
+  max-width: none;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .main {
+    margin-left: 0;
+    padding: 20px 16px 92px; /* Extra bottom padding for mobile sidebar */
+    width: 100%;
+  }
+
+  .mainExpanded {
+    margin-left: 0;
+    width: 100%;
+  }
+}

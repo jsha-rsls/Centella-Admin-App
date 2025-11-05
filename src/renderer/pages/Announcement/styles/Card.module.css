@@ -1,0 +1,392 @@
+/* Card.module.css - Updated with Rich Text Support, Batch Selection, and Publish Button */
+
+/* Card container */
+.announcementCard {
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.2s;
+  position: relative;
+}
+
+.announcementCard:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Select Mode Styles */
+.selectModeCard {
+  cursor: pointer;
+  user-select: none;
+}
+
+.selectModeCard:hover {
+  border-color: #231828;
+  box-shadow: 0 4px 12px rgba(35, 24, 40, 0.2);
+}
+
+.selectedCard {
+  border-color: #231828;
+  background: linear-gradient(135deg, rgba(255, 245, 245, 0.5) 0%, rgba(249, 230, 230, 0.5) 100%);
+  box-shadow: 0 4px 12px rgba(35, 24, 40, 0.25);
+}
+
+/* Checkbox Container */
+.checkboxContainer {
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 50%;
+  transition: all 0.2s;
+}
+
+.checkboxContainer:hover {
+  background: rgba(35, 24, 40, 0.1);
+}
+
+.checkboxUnchecked {
+  color: #cbd5e0;
+  transition: all 0.2s;
+}
+
+.checkboxContainer:hover .checkboxUnchecked {
+  color: #231828;
+}
+
+.checkboxChecked {
+  color: #231828;
+  animation: checkPop 0.3s ease-out;
+}
+
+@keyframes checkPop {
+  0% {
+    transform: scale(0.8);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Image */
+.cardImage {
+  width: 100%;
+  height: 160px;
+  overflow: hidden;
+}
+
+.cardImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Content */
+.cardContent {
+  padding: 24px;
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12px;
+  gap: 16px;
+}
+
+.cardTitle {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1a202c;
+  margin: 0;
+  flex: 1;
+  font-family: 'Roboto', sans-serif;
+  line-height: 1.4;
+}
+
+/* Rich text formatting in card title */
+.cardTitle font {
+  display: inline;
+}
+
+.cardTitle b,
+.cardTitle strong {
+  font-weight: 700;
+}
+
+.cardTitle i,
+.cardTitle em {
+  font-style: italic;
+}
+
+.cardTitle u {
+  text-decoration: underline;
+}
+
+/* Font size handling for titles */
+.cardTitle font[size="1"] {
+  font-size: 0.75em;
+}
+
+.cardTitle font[size="2"] {
+  font-size: 1em;
+}
+
+.cardTitle font[size="3"] {
+  font-size: 1.1em;
+}
+
+.cardTitle font[size="4"] {
+  font-size: 1.25em;
+}
+
+.cardTitle font[size="5"] {
+  font-size: 1.4em;
+  font-weight: 700;
+}
+
+/* Badges */
+.cardBadges {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  flex-shrink: 0;
+}
+
+.badge {
+  padding: 4px 8px;
+  border-radius: 16px;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: capitalize;
+  font-family: 'Roboto', sans-serif;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  white-space: nowrap;
+}
+
+.badge.published {
+  background: #c6f6d5;
+  color: #22543d;
+}
+
+.badge.draft {
+  background: #fed7d7;
+  color: #742a2a;
+}
+
+.badge.scheduled {
+  background: #bee3f8;
+  color: #1a365d;
+}
+
+.badge.archived {
+  background: #e2e8f0;
+  color: #4a5568;
+}
+
+.badge.announcement {
+  background: #e6fffa;
+  color: #234e52;
+}
+
+.badge.updates {
+  background: #fef5e7;
+  color: #744210;
+}
+
+.badge.alerts {
+  background: #fed7d7;
+  color: #742a2a;
+}
+
+/* Description */
+.cardDescription {
+  color: #4a5568;
+  line-height: 1.6;
+  margin: 0 0 16px 0;
+  font-size: 14px;
+  font-family: 'Roboto', sans-serif;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Meta info */
+.cardMeta {
+  display: flex;
+  gap: 16px;
+  font-size: 12px;
+  color: #718096;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+  font-family: 'Roboto', sans-serif;
+}
+
+.metaItem {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Actions */
+.cardActions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.viewButton,
+.editButton,
+.archiveButton,
+.unarchiveButton,
+.publishButton,
+.deleteButton {
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: 'Roboto', sans-serif;
+  border: 1px solid;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Action buttons styles */
+.viewButton {
+  background: #e6fffa;
+  color: #234e52;
+  border-color: #81e6d9;
+}
+
+.viewButton:hover:not(:disabled) {
+  background: #b2f5ea;
+}
+
+.editButton {
+  background: #edf2f7;
+  color: #4a5568;
+  border-color: #e2e8f0;
+}
+
+.editButton:hover:not(:disabled) {
+  background: #e2e8f0;
+}
+
+.publishButton {
+  background: #c6f6d5;
+  color: #22543d;
+  border-color: #9ae6b4;
+}
+
+.publishButton:hover:not(:disabled) {
+  background: #9ae6b4;
+}
+
+.archiveButton {
+  background: #fff5b4;
+  color: #744210;
+  border-color: #f6e05e;
+}
+
+.archiveButton:hover:not(:disabled) {
+  background: #faf089;
+}
+
+.archiveButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.unarchiveButton {
+  background: #e6fffa;
+  color: #234e52;
+  border-color: #81e6d9;
+}
+
+.unarchiveButton:hover:not(:disabled) {
+  background: #b2f5ea;
+}
+
+.deleteButton {
+  background: #fed7d7;
+  color: #742a2a;
+  border-color: #fc8181;
+}
+
+.deleteButton:hover:not(:disabled) {
+  background: #feb2b2;
+}
+
+/* Disabled state for buttons in select mode */
+.viewButton:disabled,
+.editButton:disabled,
+.archiveButton:disabled,
+.unarchiveButton:disabled,
+.publishButton:disabled,
+.deleteButton:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  filter: grayscale(0.5);
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+  .cardContent {
+    padding: 16px;
+  }
+
+  .cardHeader {
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-start;
+  }
+
+  .cardBadges {
+    align-self: flex-start;
+  }
+
+  .cardTitle {
+    font-size: 16px;
+  }
+
+  .cardMeta {
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .cardActions {
+    gap: 6px;
+  }
+
+  .viewButton,
+  .editButton,
+  .archiveButton,
+  .unarchiveButton,
+  .publishButton,
+  .deleteButton {
+    flex: 1;
+    justify-content: center;
+    min-width: 70px;
+  }
+
+  .checkboxContainer {
+    bottom: 12px;
+    right: 12px;
+  }
+}

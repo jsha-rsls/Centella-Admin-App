@@ -1,0 +1,326 @@
+/* ViewModal Styles */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 16px;
+  animation: fadeIn 0.25s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.modalContent {
+  background: #fff;
+  border-radius: 12px;
+  max-width: 600px;
+  width: 100%;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 24px;
+  border-bottom: 1px solid #edf2f7;
+  background: #f9fafb;
+  flex-shrink: 0;
+}
+
+.modalHeader h2 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1a202c;
+  line-height: 1.4;
+  flex: 1;
+  margin-right: 16px;
+}
+
+/* Rich text formatting in view modal title */
+.modalHeader h2 font {
+  display: inline;
+}
+
+.modalHeader h2 b,
+.modalHeader h2 strong {
+  font-weight: 700;
+}
+
+.modalHeader h2 i,
+.modalHeader h2 em {
+  font-style: italic;
+}
+
+.modalHeader h2 u {
+  text-decoration: underline;
+}
+
+/* Font size handling for view modal title */
+.modalHeader h2 font[size="1"] {
+  font-size: 0.8em;
+}
+
+.modalHeader h2 font[size="2"] {
+  font-size: 1em;
+}
+
+.modalHeader h2 font[size="3"] {
+  font-size: 1.2em;
+}
+
+.modalHeader h2 font[size="4"] {
+  font-size: 1.4em;
+}
+
+.modalHeader h2 font[size="5"] {
+  font-size: 1.6em;
+  font-weight: 700;
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  font-size: 20px;
+  color: #718096;
+  cursor: pointer;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, color 0.2s;
+  flex-shrink: 0;
+}
+
+.closeButton:hover {
+  background: #edf2f7;
+  color: #2d3748;
+}
+
+.modalBody {
+  flex: 1;
+  overflow-y: auto;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.viewModalImage {
+  margin-bottom: 16px;
+  border-radius: 8px;
+  overflow: hidden;
+  max-width: 100%;
+}
+
+.viewModalImage img {
+  width: 100%;
+  height: auto;
+  display: block;
+  max-height: 400px;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+.viewModalContent {
+  color: #374151;
+  line-height: 1.7;
+  font-size: 15px;
+  margin-bottom: 16px;
+}
+
+/* Rich text formatting in view modal content */
+.viewModalContent font {
+  display: inline;
+}
+
+.viewModalContent b,
+.viewModalContent strong {
+  font-weight: 600;
+}
+
+.viewModalContent i,
+.viewModalContent em {
+  font-style: italic;
+}
+
+.viewModalContent u {
+  text-decoration: underline;
+}
+
+.viewModalContent ul {
+  margin: 12px 0;
+  padding-left: 20px;
+}
+
+.viewModalContent li {
+  margin: 6px 0;
+}
+
+.viewModalContent p {
+  margin: 12px 0;
+}
+
+.viewModalContent p:first-child {
+  margin-top: 0;
+}
+
+.viewModalContent p:last-child {
+  margin-bottom: 0;
+}
+
+/* Font size handling for view modal content */
+.viewModalContent font[size="1"] {
+  font-size: 0.75em;
+}
+
+.viewModalContent font[size="2"] {
+  font-size: 1em;
+}
+
+.viewModalContent font[size="3"] {
+  font-size: 1.25em;
+}
+
+.viewModalContent font[size="4"] {
+  font-size: 1.5em;
+}
+
+.viewModalContent font[size="5"] {
+  font-size: 1.75em;
+  font-weight: 600;
+}
+
+.viewModalMeta {
+  border-top: 1px solid #f3f4f6;
+  padding-top: 16px;
+  margin-top: 8px;
+}
+
+.viewModalMeta p {
+  margin: 6px 0;
+  line-height: 1.5;
+  color: #6b7280;
+}
+
+.viewModalMeta p:first-child {
+  margin-top: 0;
+}
+
+.viewModalMeta p:last-child {
+  margin-bottom: 0;
+}
+
+.viewModalMeta p small {
+  color: #6b7280;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.modalFooter {
+  padding: 16px 24px;
+  border-top: 1px solid #edf2f7;
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  background: #f9fafb;
+  flex-shrink: 0;
+}
+
+.cancelButton {
+  padding: 10px 20px;
+  border-radius: 7px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+  background: #e5e7eb;
+  color: #374151;
+}
+
+.cancelButton:hover:not(:disabled) {
+  background: #d1d5db;
+}
+
+.cancelButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 480px) {
+  .modal {
+    padding: 12px;
+  }
+
+  .modalContent {
+    max-width: 100%;
+    max-height: 95vh;
+  }
+
+  .modalHeader {
+    padding: 16px;
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  .modalHeader h2 {
+    font-size: 1.1rem;
+    margin-right: 0;
+    width: 100%;
+  }
+
+  .closeButton {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 32px;
+    height: 32px;
+  }
+
+  .modalBody {
+    padding: 16px;
+    gap: 12px;
+  }
+
+  .modalFooter {
+    padding: 12px 16px;
+  }
+
+  .viewModalImage img {
+    max-height: 250px;
+  }
+
+  .viewModalContent {
+    font-size: 14px;
+  }
+
+  /* Mobile font size adjustments */
+  .modalHeader h2 font[size="5"] {
+    font-size: 1.4em;
+  }
+
+  .viewModalContent font[size="5"] {
+    font-size: 1.5em;
+  }
+}

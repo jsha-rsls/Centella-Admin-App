@@ -1,0 +1,378 @@
+/* Modern Simplified Reservations Table - Pinkish Theme */
+
+.container {
+  width: 100%;
+}
+
+/* Table Controls */
+.tableControls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 16px;
+  background: #ffffff;
+  border-radius: 12px;
+  border: 1.5px solid #ead0d0;
+  box-shadow: 0 2px 8px rgba(35, 24, 40, 0.06);
+}
+
+.tableInfo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.totalGroups {
+  font-size: 14px;
+  font-weight: 600;
+  color: #231828;
+}
+
+/* Table Wrapper */
+.tableWrapper {
+  background: #ffffff;
+  border-radius: 12px;
+  border: 1.5px solid #ead0d0;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(35, 24, 40, 0.06);
+}
+
+/* Table */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+/* Table Header */
+.table thead {
+  background: #f5dfe0;
+  border-bottom: 1.5px solid #ead0d0;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.table th {
+  padding: 12px 16px;
+  text-align: center;
+  font-size: 11px;
+  font-weight: 700;
+  color: #231828;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Data Rows */
+.row {
+  border-bottom: 1px solid #ead0d0;
+  transition: background-color 0.15s ease;
+  background: #ffffff;
+  text-align: center;
+}
+
+.row:hover {
+  background: #faf9fa;
+}
+
+.table td {
+  padding: 12px 16px;
+  font-size: 13px;
+  color: #231828;
+}
+
+.timeCell {
+  white-space: nowrap;
+  font-weight: 500;
+}
+
+.purposeCell {
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.amountCell {
+  font-weight: 700;
+  color: #231828;
+  font-size: 14px;
+}
+
+.freeText {
+  color: #059669;
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 0.3px;
+}
+
+/* Status Badges */
+.statusPending,
+.statusApproved,
+.statusRejected,
+.statusCancelled,
+.statusCompleted {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.2px;
+  border: 1px solid;
+}
+
+.statusPending {
+  background: #fef08a;
+  color: #b45309;
+  border-color: #fde047;
+}
+
+.statusApproved {
+  background: #d1fae5;
+  color: #065f46;
+  border-color: #a7f3d0;
+}
+
+.statusRejected {
+  background: #fecaca;
+  color: #991b1b;
+  border-color: #fca5a5;
+}
+
+.statusCancelled {
+  background: #e5e7eb;
+  color: #4b5563;
+  border-color: #d1d5db;
+}
+
+.statusCompleted {
+  background: #dbeafe;
+  color: #1e40af;
+  border-color: #bfdbfe;
+}
+
+/* Payment Type Badges */
+.paymentCash,
+.paymentOnline,
+.paymentFree,
+.paymentNotSet {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.2px;
+  border: 1px solid;
+}
+
+.paymentCash {
+  background: #dbeafe;
+  color: #1e40af;
+  border-color: #bfdbfe;
+}
+
+.paymentOnline {
+  background: #e9d5ff;
+  color: #6b21a8;
+  border-color: #d8b4fe;
+}
+
+.paymentFree {
+  background: #d1fae5;
+  color: #065f46;
+  border-color: #a7f3d0;
+}
+
+.paymentNotSet {
+  background: #f3f4f6;
+  color: #6b7280;
+  border-color: #e5e7eb;
+}
+
+/* Actions */
+.actions {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+  align-items: center;
+}
+
+.btnApprove,
+.btnReject {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.2px;
+}
+
+.btnApprove {
+  background: #10b981;
+  color: white;
+}
+
+.btnApprove:hover:not(:disabled) {
+  background: #059669;
+  transform: translateY(-1px);
+}
+
+.btnReject {
+  background: #ef4444;
+  color: white;
+}
+
+.btnReject:hover:not(:disabled) {
+  background: #dc2626;
+  transform: translateY(-1px);
+}
+
+.btnApprove:disabled,
+.btnReject:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.noAction {
+  color: #d9b8b8;
+  font-size: 16px;
+}
+
+/* Empty State */
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 20px;
+  background: #ffffff;
+  border: 2px dashed #d9b8b8;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(35, 24, 40, 0.06);
+}
+
+.emptyIcon {
+  font-size: 64px;
+  margin-bottom: 16px;
+  opacity: 0.3;
+}
+
+.emptyText {
+  font-size: 16px;
+  color: #231828;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.emptySubtext {
+  font-size: 13px;
+  color: #8c8585;
+  font-weight: 500;
+}
+
+/* Pagination styles */
+.paginationContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  margin-top: 20px;
+  padding: 16px;
+  background: #ffffff;
+  border-radius: 12px;
+  border: 1.5px solid #ead0d0;
+  box-shadow: 0 2px 8px rgba(35, 24, 40, 0.06);
+}
+
+.paginationBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  background: #ffffff;
+  color: #231828;
+  border: 1.5px solid #ead0d0;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(35, 24, 40, 0.06);
+}
+
+.paginationBtn:hover:not(:disabled) {
+  background: #f5dfe0;
+  border-color: #ead0d0;
+}
+
+.paginationBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.pageInfo {
+  font-size: 13px;
+  color: #8c8585;
+  font-weight: 500;
+}
+
+.currentPage,
+.totalPages {
+  font-weight: 700;
+  color: #231828;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .table th,
+  .table td {
+    padding: 10px 12px;
+    font-size: 12px;
+  }
+
+  .btnApprove span,
+  .btnReject span {
+    display: none;
+  }
+
+  .btnApprove,
+  .btnReject {
+    padding: 8px;
+  }
+}
+
+@media (max-width: 768px) {
+  .tableControls {
+    flex-direction: column;
+    gap: 10px;
+    align-items: stretch;
+  }
+
+  .tableInfo {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .paginationContainer {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .paginationBtn span {
+    display: none;
+  }
+
+  .paginationBtn {
+    padding: 8px 10px;
+  }
+}

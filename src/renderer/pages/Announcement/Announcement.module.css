@@ -1,0 +1,622 @@
+/* Import Roboto Font */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap');
+
+/* Main Container */
+.announcement {
+  margin: 0 auto;
+  font-family: 'Roboto', sans-serif;
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 64px);
+}
+
+/* Header */
+.header {
+  margin-bottom: 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.header h1 {
+  font-size: 28px;
+  font-weight: 600;
+  color: #1a202c;
+  margin: 0 0 4px 0;
+  font-family: 'Roboto', sans-serif;
+}
+
+.header p {
+  font-size: 16px;
+  color: #718096;
+  margin: 0;
+  font-weight: 400;
+}
+
+.headerActions {
+  display: flex;
+  gap: 8px;
+  background: white;
+  padding: 6px;
+  border-radius: 8px;
+  border: 2px solid #e8d4d4;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+}
+
+.createButton {
+  background: #231828;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: 'Roboto', sans-serif;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  letter-spacing: -0.01em;
+}
+
+.createButton:hover {
+  background: #3d2f47;
+  box-shadow: 0 2px 6px rgba(35, 24, 40, 0.3);
+}
+
+.statsButton {
+  background: #fff5f5;
+  color: #2d2d2e;
+  border: 1.5px solid #e8d4d4;
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: 'Roboto', sans-serif;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  letter-spacing: -0.01em;
+}
+
+.statsButton:hover {
+  background: #f9e6e6;
+  color: #231828;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* Drafts Button */
+.draftsViewButton {
+  background: #fff5f5;
+  color: #2d2d2e;
+  border: 1.5px solid #e8d4d4;
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: 'Roboto', sans-serif;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  letter-spacing: -0.01em;
+}
+
+.draftsViewButton:hover {
+  background: #f9e6e6;
+  color: #231828;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.draftsViewButtonActive {
+  background: #231828;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: 'Roboto', sans-serif;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  letter-spacing: -0.01em;
+}
+
+.draftsViewButtonActive:hover {
+  background: #3d2f47;
+  box-shadow: 0 2px 6px rgba(35, 24, 40, 0.3);
+}
+
+/* Archive Button */
+.archiveViewButton {
+  background: #fff5f5;
+  color: #2d2d2e;
+  border: 1.5px solid #e8d4d4;
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: 'Roboto', sans-serif;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  letter-spacing: -0.01em;
+}
+
+.archiveViewButton:hover {
+  background: #f9e6e6;
+  color: #231828;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.archiveViewButtonActive {
+  background: #231828;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: 'Roboto', sans-serif;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  letter-spacing: -0.01em;
+}
+
+.archiveViewButtonActive:hover {
+  background: #3d2f47;
+  box-shadow: 0 2px 6px rgba(35, 24, 40, 0.3);
+}
+
+/* Select Mode Button */
+.selectModeButton {
+  background: #fff5f5;
+  color: #2d2d2e;
+  border: 1.5px solid #e8d4d4;
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: 'Roboto', sans-serif;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  letter-spacing: -0.01em;
+}
+
+.selectModeButton:hover {
+  background: #f9e6e6;
+  color: #231828;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.selectModeActive {
+  background: #231828;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: 'Roboto', sans-serif;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  letter-spacing: -0.01em;
+}
+
+.selectModeActive:hover {
+  background: #3d2f47;
+  box-shadow: 0 2px 6px rgba(35, 24, 40, 0.3);
+}
+
+/* Batch Selection Toolbar */
+.batchToolbar {
+  background: #4a2f42;
+  color: white;
+  padding: 16px 24px;
+  border-radius: 12px;
+  margin-bottom: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 12px rgba(35, 24, 40, 0.3);
+  animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.batchToolbarLeft {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.batchCount {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.selectAllButton {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: 'Roboto', sans-serif;
+}
+
+.selectAllButton:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.batchToolbarRight {
+  display: flex;
+  gap: 12px;
+}
+
+.batchPublishButton {
+  background: #c6f6d5;
+  color: #22543d;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: 'Roboto', sans-serif;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.batchPublishButton:hover {
+  background: #9ae6b4;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.batchDraftButton {
+  background: #fef5e7;
+  color: #744210;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: 'Roboto', sans-serif;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.batchDraftButton:hover {
+  background: #fcebcf;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.batchUnarchiveButton {
+  background: #bee3f8;
+  color: #1a365d;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: 'Roboto', sans-serif;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.batchUnarchiveButton:hover {
+  background: #90cdf4;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.batchArchiveButton {
+  background: #fff5b4;
+  color: #744210;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: 'Roboto', sans-serif;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.batchArchiveButton:hover {
+  background: #faf089;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.batchDeleteButton {
+  background: #fed7d7;
+  color: #742a2a;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: 'Roboto', sans-serif;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.batchDeleteButton:hover {
+  background: #feb2b2;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.backButton {
+  background: #f7fafc;
+  color: #4a5568;
+  border: 1px solid #e2e8f0;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  margin-bottom: 16px;
+  transition: all 0.2s;
+  font-family: 'Roboto', sans-serif;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.backButton:hover {
+  background: #edf2f7;
+  border-color: #cbd5e0;
+}
+
+/* Announcements List */
+.announcementsList {
+  display: block;
+  gap: 16px;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  padding-right: 8px;
+  padding-bottom: 24px;
+}
+
+.announcementsList > *:not(:last-child) {
+  margin-bottom: 16px;
+}
+
+/* Preview Content Styles */
+.previewContent {
+  font-family: 'Roboto', sans-serif;
+}
+
+.previewImage {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.previewImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.previewHeader {
+  margin-bottom: 20px;
+}
+
+.previewHeader h1 {
+  font-size: 24px;
+  font-weight: 600;
+  color: #1a202c;
+  margin: 0 0 12px 0;
+  line-height: 1.3;
+}
+
+.previewMeta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.previewDate {
+  color: #718096;
+  font-size: 14px;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.previewBody {
+  line-height: 1.6;
+  color: #2d3748;
+  margin-bottom: 20px;
+}
+
+.previewBody p {
+  margin: 0 0 16px 0;
+  font-size: 16px;
+}
+
+.previewFooter {
+  padding-top: 16px;
+  border-top: 1px solid #e2e8f0;
+}
+
+.viewsCount {
+  color: #718096;
+  font-size: 14px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Empty State */
+.emptyState {
+  background: white;
+  padding: 60px 40px;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  text-align: center;
+}
+
+.emptyIcon {
+  font-size: 48px;
+  color: #718096;
+  margin-bottom: 16px;
+}
+
+.emptyState h3 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #1a202c;
+  margin: 0 0 8px 0;
+  font-family: 'Roboto', sans-serif;
+}
+
+.emptyState p {
+  font-size: 14px;
+  color: #718096;
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+}
+
+/* Loading State */
+.loadingState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.loadingSpinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid #f3f4f6;
+  border-top: 3px solid #3b82f6;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loadingState p {
+  color: #6b7280;
+  font-size: 1rem;
+  margin: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .announcement {
+    padding: 0 16px;
+  }
+  
+  .header {
+    flex-direction: column;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  
+  .headerActions {
+    width: 100%;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .batchToolbar {
+    flex-direction: column;
+    gap: 16px;
+    align-items: stretch;
+  }
+
+  .batchToolbarLeft,
+  .batchToolbarRight {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .batchArchiveButton,
+  .batchPublishButton,
+  .batchDraftButton,
+  .batchUnarchiveButton,
+  .batchDeleteButton {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .selectButtonText,
+  .createButtonText,
+  .statsButtonText,
+  .archiveButtonText,
+  .draftsButtonText {
+    display: inline;
+  }
+}
+
+@media (max-width: 480px) {
+  .selectButtonText,
+  .createButtonText,
+  .statsButtonText,
+  .archiveButtonText,
+  .draftsButtonText {
+    display: none;
+  }
+}

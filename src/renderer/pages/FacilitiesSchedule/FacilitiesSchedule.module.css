@@ -1,0 +1,636 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap");
+
+:root {
+  --bg: #ffffff;
+  --card-border: #d1d5db;
+}
+
+/* ───────────────────────────────
+   Base Layout
+─────────────────────────────── */
+.container {
+  width: 100%;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background-color: #f9fafb;
+  overflow: visible;
+  box-sizing: border-box;
+}
+
+/* ───────────────────────────────
+   Header
+─────────────────────────────── */
+.header {
+  margin-bottom: 1.5rem;
+}
+
+.header h1 {
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: #231828;
+  margin: 0 0 0.375rem 0;
+  letter-spacing: -0.025em;
+}
+
+.header p {
+  font-size: 1rem;
+  color: #6b7280;
+  margin: 0;
+  font-weight: 400;
+}
+
+/* ───────────────────────────────
+   Tab Navigation
+─────────────────────────────── */
+.tabContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+  padding: 0.375rem;
+  top: 0;
+  z-index: 100;
+  background: var(--bg);
+  border-radius: clamp(0.375rem, 0.8vw, 0.75rem);
+  border: 0.125rem solid var(--card-border);
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.08);
+}
+
+.tabsWrapper {
+  display: flex;
+  gap: 1rem;
+  flex: 1;
+}
+
+.tab {
+  padding: 0.75rem 1.25rem;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  background: #fff5f5;
+  border: 1.5px solid #e8d4d4;
+  color: #2d2d2e;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.9375rem;
+  letter-spacing: -0.01em;
+}
+
+.tab:hover {
+  color: #231828;
+  background: #f9e6e6;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.05);
+}
+
+.tabActive {
+  background: #231828;
+  color: white;
+  box-shadow: 0 0.125rem 0.375rem rgba(35, 24, 40, 0.3);
+  font-weight: 500;
+}
+
+/* Added view controls wrapper for filter button and view toggles */
+.viewControls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Filter Toggle Button */
+.filterToggleButton {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.68rem 0.75rem;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  background: #fff5f5;
+  border: 1.5px solid #e8d4d4;
+  color: #2d2d2e;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.9375rem;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+
+.filterToggleButton:hover {
+  color: #231828;
+  background: #f9e6e6;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.05);
+}
+
+.filterToggleActive {
+  background: #231828;
+  color: white;
+  box-shadow: 0 0.125rem 0.375rem rgba(35, 24, 40, 0.3);
+  font-weight: 600;
+}
+
+.filterToggleButton ion-icon {
+  font-size: 1.25rem;
+}
+
+/* Added view toggle group and button styles */
+.viewToggleGroup {
+  display: flex;
+  gap: 0.25rem;
+  background: #fff5f5;
+  border: 1.5px solid #e8d4d4;
+  border-radius: 0.5rem;
+  padding: 0.25rem;
+}
+
+.viewToggleButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.4rem 0.75rem;
+  border-radius: 0.375rem;
+  background: transparent;
+  border: none;
+  color: #6b7280;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.viewToggleButton:hover {
+  color: #231828;
+  background: rgba(35, 24, 40, 0.05);
+}
+
+.viewToggleButton ion-icon {
+  font-size: 1.25rem;
+}
+
+.viewToggleActive {
+  background: #231828;
+  color: white;
+  box-shadow: 0 0.0625rem 0.125rem rgba(35, 24, 40, 0.2);
+}
+
+/* ───────────────────────────────
+   Modal
+─────────────────────────────── */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(35, 24, 40, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(0.25rem);
+  /* Added opening animation */
+  animation: modalFadeIn 0.3s ease-out;
+}
+
+/* Added closing animation class */
+.modalClosing {
+  animation: modalFadeOut 0.3s ease-out;
+}
+
+.modalContent {
+  background: white;
+  border-radius: 1rem;
+  box-shadow: 0 1.25rem 3.125rem rgba(35, 24, 40, 0.2), 0 0.625rem 1.25rem rgba(35, 24, 40, 0.1);
+  /* Increased max-width for inline layout */
+  max-width: 62.5rem;
+  width: 90%;
+  max-height: 85vh;
+  overflow-y: auto;
+  /* Added opening animation */
+  animation: modalSlideUp 0.3s ease-out;
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 #f1f5f9;
+}
+
+/* Added closing animation class for content */
+.modalContentClosing {
+  animation: modalSlideDown 0.3s ease-out;
+}
+
+/* Custom scrollbar for webkit browsers */
+.modalContent::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+.modalContent::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 0.25rem;
+}
+
+.modalContent::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 0.25rem;
+}
+
+.modalContent::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Added keyframe animations */
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes modalFadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes modalSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(2rem) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes modalSlideDown {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(2rem) scale(0.95);
+  }
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 1.5rem 1rem 1.5rem;
+  border-bottom: 0.0625rem solid #e2e8f0;
+  /* Removed margin-bottom, using padding instead */
+}
+
+.modalHeader h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #231828;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.closeButton {
+  background: #f8fafc;
+  border: 0.0625rem solid #e2e8f0;
+  font-size: 1.5rem;
+  color: #64748b;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Improved close button styling */
+}
+
+.closeButton:hover {
+  background: #fee2e2;
+  color: #dc2626;
+  border-color: #fecaca;
+  transform: scale(1.05);
+}
+
+.closeButton:active {
+  transform: scale(0.95);
+}
+
+.modalBody {
+  padding: 1.5rem;
+}
+
+/* ───────────────────────────────
+   Reservation Info (Modal Content)
+─────────────────────────────── */
+.reservationInfo {
+  display: flex;
+  /* Changed to row for inline layout on desktop */
+  flex-direction: row;
+  gap: 1.5rem;
+}
+
+.infoSection {
+  background: #fafbfc;
+  padding: 1.25rem;
+  border-radius: 0.75rem;
+  border: 0.0625rem solid #e2e8f0;
+  /* Added flex: 1 so both sections take equal width */
+  flex: 1;
+  /* Added min-width to prevent sections from getting too narrow */
+  min-width: 0;
+}
+
+.infoGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+}
+
+.infoItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.875rem 1rem;
+  background: white;
+  border-radius: 0.5rem;
+  border: 0.0625rem solid #e2e8f0;
+  /* Added transition for hover effect */
+  transition: all 0.2s ease;
+}
+
+/* Added hover effect for better interactivity */
+.infoItem:hover {
+  border-color: #cbd5e1;
+  box-shadow: 0 0.125rem 0.375rem rgba(0, 0, 0, 0.05);
+}
+
+/* Added wrapper for label and icon */
+.infoLabelWrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Added icon styling */
+.infoIcon {
+  font-size: 1.125rem;
+  color: #64748b;
+}
+
+.infoLabel {
+  font-weight: 500;
+  color: #64748b;
+  font-size: 0.875rem;
+}
+
+/* Renamed and improved value styling */
+.infoValue {
+  font-size: 0.875rem;
+  color: #231828;
+  font-weight: 600;
+  text-align: right;
+}
+
+/* Improved status badge styling */
+.statusBadge {
+  padding: 0.375rem 0.75rem;
+  border-radius: 0.375rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+}
+
+/* ───────────────────────────────
+   Responsive Design
+─────────────────────────────── */
+
+/* Laptop breakpoint (768px - 1024px) */
+@media (min-width: 48rem) and (max-width: 64rem) {
+  .container {
+    padding: 1rem;
+  }
+
+  .header h1 {
+    font-size: 1.625rem;
+  }
+
+  .header p {
+    font-size: 0.875rem;
+  }
+
+  .tab,
+  .filterToggleButton {
+    padding: 0.625rem 1rem;
+    font-size: 0.8125rem;
+  }
+
+  /* Stack modal sections on laptop screens */
+  .reservationInfo {
+    flex-direction: column;
+  }
+
+  .modalContent {
+    max-width: 34.375rem;
+  }
+
+  /* Added responsive styles for view toggle buttons */
+  .viewToggleButton {
+    padding: 0.5rem 0.625rem;
+  }
+
+  .viewToggleButton ion-icon {
+    font-size: 1.125rem;
+  }
+}
+
+/* Tablet breakpoint (481px - 768px) */
+@media (min-width: 30.0625rem) and (max-width: 48rem) {
+  .container {
+    padding: 0.875rem;
+  }
+
+  .header h1 {
+    font-size: 1.5rem;
+  }
+
+  .header p {
+    font-size: 0.8125rem;
+  }
+
+  .tabContainer {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+  }
+
+  .tabsWrapper {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .tab {
+    flex: 1;
+    justify-content: center;
+    padding: 0.625rem 0.75rem;
+    font-size: 0.8125rem;
+  }
+
+  /* Added responsive layout for view controls on tablet */
+  .viewControls {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .filterToggleButton {
+    flex: 1;
+    justify-content: center;
+    padding: 0.625rem;
+  }
+
+  .viewToggleGroup {
+    flex-shrink: 0;
+  }
+
+  .viewToggleButton {
+    padding: 0.5rem 0.625rem;
+  }
+
+  .viewToggleButton ion-icon {
+    font-size: 1.125rem;
+  }
+}
+
+/* Mobile breakpoint (max 480px) */
+@media (max-width: 30rem) {
+  .container {
+    padding: 0.75rem;
+  }
+
+  .header h1 {
+    font-size: 1.375rem;
+  }
+
+  .header p {
+    font-size: 0.75rem;
+  }
+
+  .tabContainer {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.375rem;
+    padding: 0.375rem;
+  }
+
+  .tabsWrapper {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .tab {
+    width: 100%;
+    justify-content: center;
+    padding: 0.625rem;
+    font-size: 0.75rem;
+  }
+
+  .tab ion-icon {
+    font-size: 1rem;
+  }
+
+  .filterToggleButton span {
+    display: none;
+  }
+
+  .filterToggleButton {
+    padding: 0.75rem 1rem;
+    justify-content: center;
+    flex: 1;
+  }
+
+  .filterToggleButton ion-icon {
+    font-size: 1.25rem;
+  }
+
+  .modalContent {
+    width: 95%;
+    max-height: 90vh;
+    /* Adjusted border radius for mobile */
+    border-radius: 0.75rem;
+  }
+
+  .modalHeader {
+    padding: 1.25rem 1.25rem 0.875rem 1.25rem;
+  }
+
+  .modalHeader h2 {
+    font-size: 1.25rem;
+  }
+
+  .modalBody {
+    padding: 1.25rem;
+  }
+
+  /* Adjusted info section padding for mobile */
+  .infoSection {
+    padding: 1rem;
+  }
+
+  .infoSection h4 {
+    font-size: 1rem;
+  }
+
+  .infoItem {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    padding: 0.75rem;
+  }
+
+  /* Adjusted icon size for mobile */
+  .infoIcon {
+    font-size: 1rem;
+  }
+
+  .infoLabel {
+    font-size: 0.75rem;
+  }
+
+  /* Updated value styling for mobile */
+  .infoValue {
+    font-size: 0.8125rem;
+    text-align: left;
+    width: 100%;
+  }
+
+  /* Adjusted close button for mobile */
+  .closeButton {
+    padding: 0.375rem;
+    font-size: 1.25rem;
+  }
+
+  /* Stack modal sections on mobile */
+  .reservationInfo {
+    flex-direction: column;
+  }
+
+  .viewControls {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .viewToggleGroup {
+    flex-shrink: 0;
+  }
+
+  .viewToggleButton {
+    padding: 0.5rem 0.625rem;
+  }
+
+  .viewToggleButton ion-icon {
+    font-size: 1.125rem;
+  }
+}

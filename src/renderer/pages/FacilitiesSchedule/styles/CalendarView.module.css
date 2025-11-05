@@ -1,0 +1,922 @@
+:root {
+  --bg: #ffffff;
+  --muted: #4b5563;
+  --accent: #231828;
+  --card-border: #d1d5db;
+  --soft: #fafafa;
+  --pink: #f9e6e6;
+  --danger: #ef4444;
+}
+
+/* Top-level layout: two columns (calendar | sidebar) */
+.calendarLayout {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(17.5rem, 23.75rem);
+  gap: clamp(0.75rem, 1.5vw, 1.5rem);
+  align-items: stretch;
+  height: calc(105vh - 17.5rem);
+  max-height: calc(105vh - 17.5rem);
+  overflow: hidden;
+}
+
+/* Generic column containers */
+.calendarSection,
+.sidebarSection {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+/* Card (shared styles for both sides) */
+.calendarCard,
+.sidebarCard {
+  background: var(--bg);
+  border-radius: clamp(0.375rem, 0.8vw, 0.75rem);
+  border: 0.125rem solid var(--card-border);
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.08);
+  padding: clamp(0.75rem, 1.4vw, 1.25rem);
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* Header inside calendar card */
+.calendarHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 0.75rem;
+  border-bottom: 0.125rem solid #e5e7eb;
+  flex: 0 0 auto;
+}
+
+.calendarHeader h2 {
+  font-size: clamp(1.125rem, 2.2vw, 1.375rem);
+  margin: 0;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+/* Nav buttons */
+.calendarNav {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.navButton,
+.todayButton {
+  padding: 0.375rem 0.75rem;
+  border-radius: 0.375rem;
+  border: 0.125rem solid var(--card-border);
+  background: #fff;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 0.875rem;
+  transition: all 0.2s ease;
+}
+
+/* Added styles for the back to quick stats button */
+.backButton {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.37rem 0.875rem;
+  background: #f1f5f9;
+  border: 0.125rem solid #cbd5e1;
+  border-radius: 0.5rem;
+  color: #475569;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  margin-right: 0.5rem;
+}
+
+.backButton:hover {
+  background: #231828;
+  color: white;
+  border-color: #231828;
+  box-shadow: 0 0.125rem 0.375rem rgba(35, 24, 40, 0.2);
+}
+
+.backButton ion-icon {
+  font-size: 1.125rem;
+}
+
+.todayButton {
+  background: var(--accent);
+  color: #fff;
+  border-color: transparent;
+}
+
+.todayButton:hover {
+  background: #1a1216;
+  box-shadow: 0 0.125rem 0.375rem rgba(35, 24, 40, 0.3);
+}
+
+/* Calendar main area */
+.calendar {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+}
+
+/* Day headers row */
+.calendarDays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0;
+  margin: 0.75rem 0;
+  flex: 0 0 auto;
+}
+
+.dayHeader {
+  text-align: center;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--muted);
+  text-transform: uppercase;
+  padding: 0.375rem 0.25rem;
+}
+
+/* Calendar grid */
+.calendarGrid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+  gap: 0.875rem;
+  flex: 1;
+  min-height: 0;
+  overflow: visible;
+  background: transparent;
+  border-radius: 0.375rem;
+  padding: 0.25rem;
+}
+
+/* Individual day - BASE STYLE (future dates in current month) */
+.calendarDay {
+  background: #ffffff;
+  border-radius: 0.5rem;
+  padding: 0.75rem 0.5rem;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  border: 0.1175rem solid #9ca3af;
+  min-height: 0;
+  overflow: hidden;
+  transition: all 0.15s ease;
+}
+
+.calendarDay:hover {
+  background: #f0f9ff;
+  border-color: #2563eb;
+  transform: translateY(-0.0625rem);
+  box-shadow: 0 0.25rem 0.625rem rgba(59, 130, 246, 0.2);
+}
+
+/* Other month dates (grayed out) */
+.calendarDay.otherMonth {
+  background: #f9fafb;
+  opacity: 0.55;
+  border-color: #d1d5db;
+}
+
+.calendarDay.otherMonth .dayNumber {
+  color: #9ca3af;
+  font-weight: 500;
+}
+
+/* Past dates (muted, not clickable feel) */
+.calendarDay.pastDate {
+  background: #fef2f2;
+  border-color: #fca5a5;
+  opacity: 0.8;
+}
+
+.calendarDay.pastDate .dayNumber {
+  color: #dc2626;
+  font-weight: 700;
+  text-decoration: line-through;
+  text-decoration-color: #000000;
+  text-decoration-thickness: 0.095rem;
+}
+
+.calendarDay.pastDate:hover {
+  background: #fef2f2;
+  border-color: #fca5a5;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Today (highlighted) */
+.calendarDay.today {
+  background: linear-gradient(135deg, #fce7e7 0%, #f9e6e6 100%);
+  border: 0.1525rem solid #83345f;
+  font-weight: 600;
+  box-shadow: 0 0.3125rem 0.875rem rgba(35, 24, 40, 0.2);
+}
+
+.calendarDay.today .dayNumber {
+  color: #231828;
+  font-size: 1.0625rem;
+  font-weight: 800;
+}
+
+/* Selected date */
+.calendarDay.selected {
+  background: #f3e9f7;
+  border: 0.1375rem solid #231828;
+  color: var(--accent);
+  box-shadow: 0 0.3125rem 0.875rem rgba(35, 24, 40, 0.25);
+  font-weight: 700;
+  z-index: 1;
+}
+
+.calendarDay.selected .dayNumber {
+  color: #231828;
+  font-size: 1.0625rem;
+  font-weight: 800;
+}
+
+.calendarDay.selected .eventDot {
+  border: 0.1375rem solid #fff;
+}
+
+/* Day number */
+.dayNumber {
+  font-weight: 800;
+  margin-bottom: 0.375rem;
+  font-size: 0.95rem;
+  color: #1e40af;
+  line-height: 1;
+  flex: 0 0 auto;
+}
+
+/* Fixed event dots container to properly position +count on the right */
+.eventDots {
+  margin-top: auto;
+  display: flex;
+  gap: 0.280rem;
+  align-items: center;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  min-height: 1rem;
+}
+
+.eventDot {
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 50%;
+  flex-shrink: 0;
+  box-shadow: 0 0 0.3125rem rgba(0, 0, 0, 0.4);
+  border: 0.1175rem solid #443d3d;
+}
+
+.courtDot {
+  background: #ef4444;
+}
+.hallDot {
+  background: #3b82f6;
+}
+
+/* Improved "+N" more events indicator positioning for laptop/desktop */
+.moreEvents {
+  font-size: 0.6875rem;
+  color: var(--muted);
+  font-weight: 800;
+  margin-left: auto;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* Facility legend styles */
+.facilityLegend {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 0.5rem 0.75rem;
+  margin-top: 0.5rem;
+  background: #f8fafc;
+  border-radius: 0.375rem;
+  border: 0.0625rem solid #e2e8f0;
+  flex: 0 0 auto;
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+
+.legendDot {
+  width: 0.625rem;
+  height: 0.625rem;
+  border-radius: 50%;
+  flex-shrink: 0;
+  box-shadow: 0 0 0.1875rem rgba(0, 0, 0, 0.3);
+  border: 0.0625rem solid #334155;
+}
+
+.legendLabel {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #475569;
+  white-space: nowrap;
+}
+
+/* Status badges */
+.statusBadge {
+  display: inline-block;
+  padding: 0.4375rem 0.75rem;
+  border-radius: 62.4375rem;
+  font-weight: 700;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+}
+
+.statusOngoing {
+  background: #d1fae5;
+  color: #047857;
+}
+.statusSoon {
+  background: #fef3c7;
+  color: #78350f;
+}
+.statusUpcoming {
+  background: #dbeafe;
+  color: #1e3a8a;
+}
+.statusDefault {
+  background: #f3f4f6;
+  color: var(--muted);
+}
+
+/* ---------- SIDEBAR ---------- */
+.sidebarHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 0.75rem;
+  border-bottom: 0.125rem solid #e5e7eb;
+  flex: 0 0 auto;
+}
+
+.sidebarHeader h3 {
+  font-size: 1.0625rem;
+  font-weight: 700;
+  color: var(--accent);
+  margin: 0;
+}
+
+.reservationCount {
+  background: #f0f0f0;
+  border: 0.125rem solid #6b7280;
+  font-size: 0.7525rem;
+  padding: 0.4375rem 0.75rem;
+  border-radius: 0.75rem;
+  font-weight: 700;
+  color: #374151;
+}
+
+/* Reservations list - scrollable */
+.dayReservations {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding-top: 0.75rem;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  flex: 1;
+  min-height: 0;
+  padding-right: 0.5rem;
+}
+
+/* Reservation cards */
+.reservationCard {
+  background: #fff;
+  border: 0.125rem solid var(--card-border);
+  border-radius: 0.75rem;
+  padding: 0.875rem;
+  cursor: pointer;
+  transition: box-shadow 0.12s ease, transform 0.08s ease, border-color 0.12s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.reservationCard:hover {
+  box-shadow: 0 0.5rem 1.25rem rgba(0, 0, 0, 0.08);
+  transform: translateY(-0.125rem);
+  border-color: #9ca3af;
+}
+
+.reservationHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.facilityTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4375rem 0.75rem;
+  background: #fff;
+  border-radius: 0.5rem;
+  border: 0.125rem solid var(--card-border);
+  font-weight: 700;
+  font-size: 0.8125rem;
+  text-transform: uppercase;
+}
+
+.reservationCard h4 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.0625rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.timeRange {
+  margin: 0 0 0.375rem 0;
+  font-size: 0.9375rem;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.reservantName {
+  font-size: 0.875rem;
+  color: #6b7280;
+  margin: 0;
+  font-weight: 500;
+}
+
+/* Empty state */
+.noReservations {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #9ca3af;
+  padding: 1.5rem;
+  text-align: center;
+  flex: 1;
+}
+
+.noReservationsIcon {
+  font-size: 1.75rem;
+  margin-bottom: 0.625rem;
+  color: #d1d5db;
+}
+
+/* Stats */
+.statsTitle {
+  font-size: 1.1875rem;
+  font-weight: 700;
+  color: var(--accent);
+  margin: 0 0 1rem 0;
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.625rem;
+  margin-bottom: 1rem;
+}
+
+.statItem {
+  padding: 0.875rem 0.625rem;
+  border-radius: 0.5rem;
+  border: 0.125rem solid var(--card-border);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.375rem;
+  transition: transform 0.2s ease, box-shadow 0.12s ease;
+}
+
+.statItem:hover {
+  transform: translateY(-0.125rem);
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+}
+
+.statTotal {
+  background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+  border-color: #9ca3af;
+}
+.statToday {
+  background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+  border-color: #fbbf24;
+}
+.statWeek {
+  background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+  border-color: #60a5fa;
+}
+.statMonth {
+  background: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%);
+  border-color: #a78bfa;
+}
+
+.statIcon {
+  font-size: 1.5rem;
+}
+.statTotal .statIcon {
+  color: #6b7280;
+}
+.statToday .statIcon {
+  color: #f59e0b;
+}
+.statWeek .statIcon {
+  color: #3b82f6;
+}
+.statMonth .statIcon {
+  color: #8b5cf6;
+}
+
+.statContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.125rem;
+}
+.statNumber {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--accent);
+  line-height: 1;
+}
+.statLabel {
+  font-size: 0.75rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.breakdownTitle {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--muted);
+  text-transform: uppercase;
+  margin: 0 0 0.625rem 0;
+}
+
+.facilityBreakdown,
+.statusSummary {
+  margin-bottom: 1rem;
+}
+.facilityStats,
+.statusList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.facilityStatItem,
+.statusItem {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 0.625rem;
+  background: #f9fafb;
+  border-radius: 0.5rem;
+  border: 0.125rem solid var(--card-border);
+}
+
+.facilityIcon {
+  font-size: 1.25rem;
+  color: var(--accent);
+  width: 2rem;
+  height: 2rem;
+  background: #fff;
+  border-radius: 0.375rem;
+  border: 0.125rem solid var(--card-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.facilityInfo {
+  flex: 1;
+}
+.facilityName {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 0.125rem;
+}
+.facilityCount {
+  font-size: 0.75rem;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.statusDot {
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 50%;
+}
+.statusDot.statusOngoing {
+  background: #10b981;
+}
+.statusDot.statusSoon {
+  background: #f59e0b;
+}
+.statusDot.statusUpcoming {
+  background: #3b82f6;
+}
+.statusDot.statusDefault {
+  background: #9ca3af;
+}
+
+.statusText {
+  flex: 1;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--accent);
+}
+.statusCount {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--muted);
+  background: #fff;
+  padding: 0.1875rem 0.5rem;
+  border-radius: 0.375rem;
+  border: 0.125rem solid var(--card-border);
+}
+
+.totalSummary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.875rem;
+  background: linear-gradient(135deg, #f3e9f7 0%, #e9d5f5 100%);
+  border-radius: 0.5rem;
+  border: 0.1875rem solid #231828;
+  margin-top: auto;
+}
+
+.totalLabel {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--accent);
+  text-transform: uppercase;
+}
+.totalNumber {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--accent);
+}
+
+/* ---------- RESPONSIVE ---------- */
+
+/* Laptop breakpoint (768px - 1024px) */
+@media (min-width: 48rem) and (max-width: 64rem) {
+  .calendarLayout {
+    grid-template-columns: minmax(0, 1.8fr) minmax(15rem, 20rem);
+    gap: 1rem;
+  }
+
+  .calendarGrid {
+    gap: 0.625rem;
+  }
+
+  .calendarDay {
+    padding: 0.625rem 0.375rem;
+  }
+
+  .eventDot {
+    width: 0.875rem;
+    height: 0.875rem;
+  }
+
+  .moreEvents {
+    font-size: 0.625rem;
+  }
+
+  .backButton {
+    padding: 0.5rem 0.875rem;
+    font-size: 0.875rem;
+    margin-right: 0.5rem;
+  }
+
+  .backButton ion-icon {
+    font-size: 1.125rem;
+  }
+
+  /* Responsive legend for laptop */
+  .facilityLegend {
+    gap: 1rem;
+    padding: 0.5rem 0.625rem;
+  }
+
+  .legendLabel {
+    font-size: 0.6875rem;
+  }
+
+  .legendDot {
+    width: 0.5625rem;
+    height: 0.5625rem;
+  }
+}
+
+/* Tablet breakpoint (481px - 768px) */
+@media (min-width: 30.0625rem) and (max-width: 48rem) {
+  .calendarLayout {
+    grid-template-columns: 1fr;
+    height: auto;
+    gap: 1.5rem;
+  }
+
+  .sidebarSection {
+    order: -1;
+  }
+
+  .sidebarCard {
+    max-height: 22.5rem;
+  }
+
+  .statsGrid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.5rem;
+  }
+
+  .calendarGrid {
+    gap: 0.625rem;
+  }
+
+  .calendarDay {
+    padding: 0.5rem 0.375rem;
+  }
+
+  .dayNumber {
+    font-size: 0.9375rem;
+  }
+
+  .eventDot {
+    width: 0.875rem;
+    height: 0.875rem;
+  }
+
+  .moreEvents {
+    font-size: 0.625rem;
+  }
+
+  .calendarHeader h2 {
+    font-size: 1.125rem;
+  }
+
+  .navButton,
+  .todayButton {
+    padding: 0.375rem 0.5rem;
+    font-size: 0.75rem;
+  }
+
+  .backButton {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.8125rem;
+    margin-right: 0.375rem;
+  }
+
+  .backButton span {
+    display: none;
+  }
+
+  .backButton ion-icon {
+    font-size: 1.25rem;
+  }
+
+  /* Responsive legend for tablet */
+  .facilityLegend {
+    gap: 0.875rem;
+    padding: 0.5rem;
+  }
+
+  .legendLabel {
+    font-size: 0.6875rem;
+  }
+
+  .legendDot {
+    width: 0.5625rem;
+    height: 0.5625rem;
+  }
+}
+
+/* Mobile breakpoint (max 480px) */
+@media (max-width: 30rem) {
+  .calendarLayout {
+    grid-template-columns: 1fr;
+    height: auto;
+    gap: 1rem;
+  }
+
+  .sidebarSection {
+    order: -1;
+  }
+
+  .sidebarCard {
+    max-height: 20rem;
+  }
+
+  .calendarGrid {
+    gap: 0.375rem;
+    grid-template-rows: repeat(6, minmax(3.125rem, 1fr));
+  }
+
+  .calendarDay {
+    padding: 0.375rem 0.25rem;
+  }
+
+  .dayNumber {
+    font-size: 0.8125rem;
+    margin-bottom: 0.25rem;
+    font-weight: 800;
+  }
+
+  .eventDot {
+    width: 0.625rem;
+    height: 0.625rem;
+    border-width: 0.125rem;
+  }
+
+  .moreEvents {
+    font-size: 0.5625rem;
+  }
+
+  .calendarHeader h2 {
+    font-size: 1.125rem;
+  }
+
+  .navButton,
+  .todayButton {
+    padding: 0.375rem 0.5rem;
+    font-size: 0.75rem;
+  }
+
+  .statsGrid {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+
+  .statItem {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0.75rem;
+  }
+
+  .statContent {
+    flex-direction: row;
+    gap: 0.5rem;
+  }
+
+  .reservationHeader {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .backButton {
+    padding: 0.5rem;
+    margin-right: 0.25rem;
+  }
+
+  .backButton span {
+    display: none;
+  }
+
+  .backButton ion-icon {
+    font-size: 1.25rem;
+  }
+
+  /* Responsive legend for mobile */
+  .facilityLegend {
+    flex-direction: row;
+    gap: 0.75rem;
+    padding: 0.5rem;
+    margin-top: 0.375rem;
+  }
+
+  .legendItem {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .legendLabel {
+    font-size: 0.625rem;
+  }
+
+  .legendDot {
+    width: 0.5rem;
+    height: 0.5rem;
+  }
+
+  .legendLabel ion-icon {
+    font-size: 0.875rem;
+  }
+}
