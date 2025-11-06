@@ -1,8 +1,6 @@
 // src/renderer/services/announcementService.js
 import { supabase } from "../../utils/supabase"
 
-const SUPABASE_URL = supabase.supabaseUrl
-
 export const announcementService = {
   // Get all announcements
   getAnnouncements: async () => {
@@ -40,13 +38,6 @@ export const announcementService = {
         .single()
 
       if (error) throw error
-
-      // Send push notifications if published
-      if (data.status === 'published') {
-        console.log('📱 Sending push notifications for announcement:', data.id)
-        await announcementService.sendPushNotifications(data)
-      }
-
       return { data, error: null }
     } catch (error) {
       console.error("Error creating announcement:", error)
@@ -78,13 +69,6 @@ export const announcementService = {
         .single()
 
       if (error) throw error
-
-      // Send push notifications if status changed to published
-      if (data.status === 'published' && announcementData.status === 'published') {
-        console.log('📱 Sending push notifications for updated announcement:', data.id)
-        await announcementService.sendPushNotifications(data)
-      }
-
       return { data, error: null }
     } catch (error) {
       console.error("Error updating announcement:", error)
@@ -189,53 +173,6 @@ export const announcementService = {
     } catch (error) {
       console.error("Error fetching announcements by category:", error)
       return { data: null, error }
-    }
-  },
-
-  // Send push notifications via Edge Function
-  async sendPushNotifications(announcement) {
-    try {
-      console.log('📱 Calling Edge Function to send notifications...')
-
-      const { data: { session } } = await supabase.auth.getSession()
-      
-      if (!session?.access_token) {
-        console.warn('⚠️ No auth session, skipping notifications')
-        return { success: false, reason: 'no_auth' }
-      }
-
-      const response = await fetch(
-        `${SUPABASE_URL}/functions/v1/send-expo-notification`,
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${session.access_token}`,
-          },
-          body: JSON.stringify({
-            announcement: {
-              id: announcement.id,
-              title: announcement.title,
-              content: announcement.content,
-              category: announcement.category,
-            },
-          }),
-        }
-      )
-
-      if (!response.ok) {
-        const errorText = await response.text()
-        console.error('❌ Edge Function error:', response.status, errorText)
-        return { success: false, error: errorText }
-      }
-
-      const result = await response.json()
-      console.log('✅ Push notifications sent:', result)
-      
-      return { success: true, result }
-    } catch (error) {
-      console.error('❌ Error sending push notifications:', error)
-      return { success: false, error: error.message }
     }
   }
 }

@@ -85,7 +85,7 @@ function Announcement() {
   const showAlert = useCallback((config) => {
     setAlertConfig({
       isOpen: true,
-      title: config.title || 'hoa',
+      title: config.title || 'Are you sure?',
       message: config.message || '',
       type: config.type || 'warning',
       confirmText: config.confirmText || 'OK',
@@ -191,7 +191,7 @@ function Announcement() {
 
   const handleBatchArchive = async () => {
     showAlert({
-      title: 'hoa',
+      title: 'Are you sure?',
       message: `Archive ${selectedIds.length} announcement(s)?`,
       type: 'warning',
       confirmText: 'OK',
@@ -224,7 +224,7 @@ function Announcement() {
 
   const handleBatchDelete = async () => {
     showAlert({
-      title: 'hoa',
+      title: 'Are you sure?',
       message: `Delete ${selectedIds.length} announcement(s) permanently? This cannot be undone.`,
       type: 'danger',
       confirmText: 'OK',
@@ -258,7 +258,7 @@ function Announcement() {
 
   const handleBatchUnarchive = async () => {
     showAlert({
-      title: 'hoa',
+      title: 'Are you sure?',
       message: `Unarchive ${selectedIds.length} announcement(s)?`,
       type: 'info',
       confirmText: 'OK',
@@ -301,7 +301,7 @@ function Announcement() {
 
   const handleBatchDraft = async () => {
     showAlert({
-      title: 'hoa',
+      title: 'Are you sure?',
       message: `Save ${selectedIds.length} announcement(s) as draft?`,
       type: 'info',
       confirmText: 'OK',
@@ -345,7 +345,7 @@ function Announcement() {
 
   const handleBatchPublish = async () => {
     showAlert({
-      title: 'hoa',
+      title: 'Are you sure?',
       message: `Publish ${selectedIds.length} draft(s)?`,
       type: 'info',
       confirmText: 'OK',
@@ -435,7 +435,7 @@ function Announcement() {
     const titleText = stripHtmlTags(announcement?.title);
     
     showAlert({
-      title: 'hoa',
+      title: 'Are you sure?',
       message: `Delete "${titleText}" permanently?`,
       type: 'danger',
       confirmText: 'OK',
