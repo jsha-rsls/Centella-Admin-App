@@ -189,19 +189,47 @@ class ReservationAdminService {
   }
 
   /**
-   * Approve reservation - SIMPLE VERSION
+   * Approve reservation with intelligent payment status handling
+   * - Cash payments: automatically mark as 'paid'
+   * - Online payments: keep existing payment_status
+   * - Free reservations (good standing): mark as 'paid'
    */
   async approveReservation(reservationId) {
     try {
-      const { error } = await supabase
+      // First, fetch the reservation to check payment type and good standing
+      const { data: reservation, error: fetchError } = await supabase
+        .from('reservations')
+        .select(`
+          *,
+          residents!inner(good_standing)
+        `)
+        .eq('id', reservationId)
+        .single()
+
+      if (fetchError) throw fetchError
+
+      // Determine payment status based on payment type and good standing
+      let paymentStatus = reservation.payment_status // Keep existing by default
+      
+      const isCashPayment = reservation.payment_type?.toLowerCase() === 'cash'
+      const isFree = reservation.residents.good_standing
+      
+      if (isCashPayment || isFree) {
+        // For cash payments or free reservations, mark as paid
+        paymentStatus = 'paid'
+      }
+
+      // Update the reservation
+      const { error: updateError } = await supabase
         .from('reservations')
         .update({ 
           status: 'confirmed',
+          payment_status: paymentStatus,
           updated_at: new Date().toISOString()
         })
         .eq('id', reservationId)
 
-      if (error) throw error
+      if (updateError) throw updateError
       
       return { success: true }
     } catch (error) {

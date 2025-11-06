@@ -177,14 +177,21 @@ const ReservationsTable = ({ groupedReservations, handleApprove, handleReject, p
   const handleApproveClick = (reservation) => {
     const isFree = reservation.residents.good_standing
     const residentName = `${reservation.residents.first_name} ${reservation.residents.last_name}`
+    const isCashPayment = reservation.payment_type?.toLowerCase() === 'cash'
     
     const paymentTypeText = reservation.payment_type 
       ? `Payment Type: ${reservation.payment_type.toUpperCase()}`
       : 'Payment Type: Not Set'
     
-    const message = isFree
-      ? `Approve FREE reservation for ${residentName}?\n\n(Good Standing - No payment required)`
-      : `Approve reservation for ${residentName}?\n\nAmount: ₱${parseFloat(reservation.total_amount).toFixed(2)}\n${paymentTypeText}\nPayment Status: ${reservation.payment_status}`
+    let message = ''
+    
+    if (isFree) {
+      message = `Approve FREE reservation for ${residentName}?\n\n(Good Standing - No payment required)`
+    } else if (isCashPayment) {
+      message = `Approve reservation for ${residentName}?\n\nAmount: ₱${parseFloat(reservation.total_amount).toFixed(2)}\n${paymentTypeText}\n\n✓ Payment status will be marked as PAID (cash received)`
+    } else {
+      message = `Approve reservation for ${residentName}?\n\nAmount: ₱${parseFloat(reservation.total_amount).toFixed(2)}\n${paymentTypeText}\nPayment Status: ${reservation.payment_status}`
+    }
 
     setModalState({
       isOpen: true,

@@ -8,8 +8,8 @@ class IncomeService {
   }
 
   /**
-   * Get all confirmed (paid) reservations with resident and facility details
-   * Returns reservations with status='confirmed' OR payment_status='paid'
+   * Get all paid reservations with resident and facility details
+   * Returns reservations with payment_status='paid'
    */
   async getAllConfirmedPayments() {
     try {
@@ -36,7 +36,7 @@ class IncomeService {
             price_unit
           )
         `)
-        .or('status.eq.confirmed,status.eq.completed')
+        .eq('payment_status', 'paid')
         .order('created_at', { ascending: false })
 
       if (error) throw error
@@ -172,30 +172,30 @@ class IncomeService {
 
       if (error) throw error
 
-      // Calculate total income (confirmed and completed)
-      const confirmedReservations = data.filter(
-        r => r.status === 'confirmed' || r.status === 'completed'
+      // Calculate total income (only paid reservations)
+      const paidReservations = data.filter(
+        r => r.payment_status === 'paid'
       )
-      const totalIncome = confirmedReservations.reduce(
+      const totalIncome = paidReservations.reduce(
         (sum, r) => sum + parseFloat(r.total_amount || 0), 
         0
       )
 
-      // Calculate monthly income
+      // Calculate monthly income (only paid reservations)
       const now = new Date()
       const currentMonth = now.getMonth()
       const currentYear = now.getFullYear()
       
-      const monthlyIncome = confirmedReservations
+      const monthlyIncome = paidReservations
         .filter(r => {
           const date = new Date(r.created_at)
           return date.getMonth() === currentMonth && date.getFullYear() === currentYear
         })
         .reduce((sum, r) => sum + parseFloat(r.total_amount || 0), 0)
 
-      // Calculate pending payments (pending status only)
+      // Calculate pending payments (payment_status='pending')
       const pendingPayments = data
-        .filter(r => r.status === 'pending')
+        .filter(r => r.payment_status === 'pending')
         .reduce((sum, r) => sum + parseFloat(r.total_amount || 0), 0)
 
       return {
@@ -204,8 +204,8 @@ class IncomeService {
           totalIncome,
           monthlyIncome,
           pendingPayments,
-          totalTransactions: confirmedReservations.length,
-          pendingTransactions: data.filter(r => r.status === 'pending').length
+          totalTransactions: paidReservations.length,
+          pendingTransactions: data.filter(r => r.payment_status === 'pending').length
         }
       }
     } catch (error) {

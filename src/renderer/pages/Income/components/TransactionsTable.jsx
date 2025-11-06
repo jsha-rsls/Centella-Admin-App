@@ -1,5 +1,20 @@
 import styles from "../styles/TransactionsTable.module.css"
-import { getStatusColor } from "../utils/calculations"
+
+// Get payment status color
+const getPaymentStatusColor = (paymentStatus, styles) => {
+  switch (paymentStatus?.toLowerCase()) {
+    case 'paid':
+      return styles.statusPaid
+    case 'pending':
+      return styles.statusPending
+    case 'cancelled':
+      return styles.statusCancelled
+    case 'refunded':
+      return styles.statusRefunded
+    default:
+      return styles.statusDefault
+  }
+}
 
 export function TransactionsTable({ reservations }) {
   return (
@@ -11,7 +26,7 @@ export function TransactionsTable({ reservations }) {
             <th>Homeowner</th>
             <th>Facility</th>
             <th>Amount</th>
-            <th>Status</th>
+            <th>Payment Status</th>
           </tr>
         </thead>
         <tbody>
@@ -29,8 +44,8 @@ export function TransactionsTable({ reservations }) {
                 <td>{reservation.facilityName || "N/A"}</td>
                 <td className={styles.amount}>₱{(reservation.totalAmount || 0).toLocaleString()}</td>
                 <td>
-                  <span className={`${styles.statusBadge} ${getStatusColor(reservation.status, styles)}`}>
-                    {reservation.status}
+                  <span className={`${styles.statusBadge} ${getPaymentStatusColor(reservation.paymentStatus, styles)}`}>
+                    {reservation.paymentStatus}
                   </span>
                 </td>
               </tr>

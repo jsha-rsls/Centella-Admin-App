@@ -125,21 +125,21 @@ function Income() {
           icon={walletOutline}
           label="Total Income"
           value={`₱${stats.totalIncome.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`}
-          description={`From ${stats.totalTransactions} confirmed reservations`}
+          description={`From ${stats.totalTransactions} Paid Reservations`}
           gradient="linear-gradient(135deg, #10b981 0%, #059669 100%)"
         />
         <StatsCard
           icon={calendarOutline}
           label="Monthly Income"
           value={`₱${stats.monthlyIncome.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`}
-          description="Current month"
+          description="Current Month"
           gradient="linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)"
         />
         <StatsCard
           icon={cashOutline}
           label="Pending Payments"
           value={`₱${stats.pendingPayments.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`}
-          description={`${stats.pendingTransactions} pending reservations`}
+          description={`${stats.pendingTransactions} Pending Payments`}
           gradient="linear-gradient(135deg, #f59e0b 0%, #d97706 100%)"
         />
       </div>
